@@ -1,0 +1,33 @@
+<h1 class="mb-1 text-align restaurant-show-title">新增帳務資訊 </h1>
+<form id="form" action="/expense" method="POST" style="width: 50%; margin: auto">
+  <div class="form-group">
+    <label for="name">名稱</label>
+    <input type="text" class="form-control" name="name" id="name" placeholder="請填入名稱..." required>
+  </div>
+  <div class="form-group">
+    <label for="date">日期</label>
+    <input type="date" class="form-control new-date" id="date" name="date" placeholder="日期" 
+    autocomplete="on" required>
+  </div>
+  <div class="form-group">
+    <label for="category">項目</label>
+    <select id="category" class="form-control" name="category" required>
+      <option value="" selected>選擇類別</option>
+      <option value="housing">家居物業</option>
+      <option value="transportation">交通出行</option>
+      <option value="entertainment">休閒娛樂</option>
+      <option value="food">餐飲食品</option>
+      <option value="other">其他</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="amount">金額</label>
+    <input type="text" class="form-control" name="amount" id="amount" placeholder="請填入金額..." required>
+  </div>
+  <div class="form-group">
+    <label for="merchant">商家名稱</label>
+    <input type="text" class="form-control" name="merchant" id="merchant" placeholder="請填入商家名稱..." required>
+  </div>
+  <button type="submit" class="btn btn-success">送出表單</button>
+  <a href="/" class="btn btn-outline-secondary">取消</a>
+</form>

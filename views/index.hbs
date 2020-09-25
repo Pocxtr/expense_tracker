@@ -1,0 +1,75 @@
+<div class="container mt-5">
+  <form class="row mt-4">
+    <div class="dropdown col-6">
+      <div class="form-group">
+          <label for="date">請選擇年月</label>
+          <input type="month" class="form-control" id="date" name="date" value="{{dateInput}}">   
+      </div>
+      </div>
+      <div class="dropdown col-6">
+        <div class="form-group">
+          <label for="dropdownMenuButton" style="display: block">請選擇類別</label>
+            <select name="category" id="category" class="form-control">
+              <option value="" selected>不分類</option>
+              <option value="housing" {{#if categorySelected.housing}}selected{{/if}}>家居物業</option>
+              <option value="transportation" {{#if categorySelected.transportation}}selected{{/if}}>交通出行</option>
+              <option value="entertainment" {{#if categorySelected.entertainment}}selected{{/if}}>休閒娛樂</option>
+              <option value="food" {{#if categorySelected.food}}selected{{/if}}>餐飲食品</option>
+              <option value="other" {{#if categorySelected.other}}selected{{/if}}>其他</option>
+           </select>
+          </div>  
+        </div>
+  </form>
+
+  <div class="card bg-secondary text-white card-body ">
+    總金額:<span class="display-2">{{totalAmount}}</span>
+  </div>
+
+  <div id="allRecords">
+    {{#each records}}
+    <div class="row mt-2">
+      {{{this.icon}}}
+      <div class="col-2">
+        <div class="m-auto">
+          <div>{{this.name}}</div>
+          <div style="color:blue;">{{this.merchant}}</div>
+        </div>
+      </div>
+      <div class="m-auto">{{this.shortDate}}</div>
+      <div class="m-auto">
+        $<span>{{this.amount}}</span>   
+      </div>
+ 
+      <div class="col-auto">
+        <form action="./expense/{{ this._id }}/edit" style="display: inline;">
+          <button type="submit" class="btn btn-info">修改</button>
+        </form>
+        <form action="./expense/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
+          <button class="btn btn-danger" type="submit">刪除</button>
+        </form>
+      </div>
+    </div>
+    {{/each}}
+
+  <div class="row">
+    <div class="col-12 col-lg-10 text-center">
+      <a href="/expense/new" class="btn btn-success mt-5">新增支出</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const date = document.querySelector('#date')
+const category = document.querySelector('#category')
+category.addEventListener('change', () => {
+    if (category.value !== '') {
+        date.parentElement.parentElement.parentElement.submit() 
+    }
+})
+
+date.addEventListener('change', () => {
+    if (date.value !== '') {
+        date.parentElement.parentElement.parentElement.submit() 
+    } 
+})
+</script>
